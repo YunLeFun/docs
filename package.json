@@ -1,0 +1,33 @@
+{
+  "name": "@yunlefun/docs",
+  "type": "module",
+  "version": "0.0.0",
+  "private": true,
+  "packageManager": "pnpm@10.33.4",
+  "scripts": {
+    "build": "pnpm docs:build",
+    "dev": "pnpm docs:dev",
+    "lint": "eslint --cache .",
+    "docs:dev": "pnpm -C docs run docs:dev",
+    "docs:build": "pnpm -C docs run docs:build",
+    "docs:preview": "pnpm -C docs run docs:preview",
+    "typecheck": "tsc --noEmit",
+    "prepare": "simple-git-hooks"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "catalog:",
+    "@types/node": "catalog:",
+    "eslint": "catalog:",
+    "lint-staged": "catalog:",
+    "pnpm": "catalog:",
+    "simple-git-hooks": "catalog:",
+    "typescript": "catalog:",
+    "vite": "catalog:"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged"
+  },
+  "lint-staged": {
+    "*": "eslint --fix"
+  }
+}
