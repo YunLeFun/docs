@@ -73,15 +73,33 @@ async function loginWithYunLeFun() {
 
 推荐：进站先 `silent` 静默探测，失败再把登录按钮接 `interactive`。
 
+## 在云乐坊原生 App 内（自动免登）
+
+当你的页面是在**云乐坊原生 App（apps.yunle.fun）的应用内容器**里被打开时，`signInWithSso()` 会**自动改走原生通道**——你的代码一行都不用改：
+
+- 普通浏览器 → www.yunle.fun 的 postMessage 桥。
+- 原生容器内 → 容器注入的 `window.ylf` 桥取**页面自己的**会话（宿主登录态不直接下发给页面，由原生用一次性授权码/服务端兑换换出独立会话）。
+
+两条路终点都是 `auth.setSession()`，所以同一行 `signInWithSso(auth)` 在网页和 App 容器里都免登。无需为原生单独写代码；只有你的站点被原生容器**授信**（`trustedHosts`）时这条路才会通。
+
+```ts
+import { isInYunleApp } from '@yunlefun/sso'
+
+if (isInYunleApp()) {
+  // 当前在云乐坊原生容器内（可选：仅用于判断 UI 形态）
+}
+```
+
 ## API 速览
 
 | 入口                     | 导出                                                       | 用途                                       |
 | ------------------------ | ---------------------------------------------------------- | ------------------------------------------ |
 | `@yunlefun/sso`          | `signInWithSso(auth, options?)`                            | 一站式：发起 SSO + 注入登录态（多数站点只用这个） |
 | `@yunlefun/sso`          | `requestSso(options?)` / `adoptSession(auth, session)`     | 分步：只取回 / 只注入                      |
+| `@yunlefun/sso`          | `isInYunleApp()`                                            | 是否在云乐坊原生 App 容器内                |
 | `@yunlefun/sso/protocol` | `SSO_RESULT_TYPE` / `parseSsoResultMessage` …              | 协议常量与消息校验（主站桥接页用）        |
 
-`options`：`{ mode?: 'silent' | 'interactive', ssoOrigin?: string, timeoutMs?: number }`。
+`options`：`{ mode?: 'silent' | 'interactive', ssoOrigin?: string, timeoutMs?: number, native?: { scope?, exchangeUrl? } }`。
 
 ## 管理员开通白名单
 
