@@ -22,6 +22,10 @@ const ACCOUNT_GUIDES: DefaultTheme.NavItemWithLink[] = [
   { text: 'SSO 与登录', link: '/account/sso' },
 ]
 
+const TOOLS: DefaultTheme.NavItemWithLink[] = [
+  { text: 'CloudBase + CodeBuddy', link: '/guide/cloudbase-codebuddy' },
+]
+
 const VERSIONS: (DefaultTheme.NavItemWithLink | DefaultTheme.NavItemChildren)[] = [
   { text: `v${version} (current)`, link: '/' },
   { text: 'Changelog', link: '/changelog' },
@@ -96,6 +100,10 @@ export default defineConfig({
         {
           text: '账号与支付',
           items: ACCOUNT_GUIDES,
+        },
+        {
+          text: '开发工具',
+          items: TOOLS,
         },
       ],
     },
