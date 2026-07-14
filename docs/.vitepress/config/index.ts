@@ -52,6 +52,11 @@ export default defineConfig({
   themeConfig: {
     ...vpConfig.themeConfig,
 
+    logo: {
+      src: '/favicon.svg',
+      alt: 'YunLeFun',
+    },
+
     search: {
       provider: 'local',
     },
