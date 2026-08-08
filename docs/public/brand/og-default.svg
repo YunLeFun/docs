@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="云乐坊开发者文档">
+  <defs>
+    <pattern id="grid" width="42" height="42" patternUnits="userSpaceOnUse">
+      <path d="M42 0H0v42" fill="none" stroke="#E6EDF7" stroke-opacity=".055"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="#0B1220"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <path d="M708 630 1200 334v296Z" fill="#155E75" opacity=".72"/>
+  <path d="M844 630 1200 416v214Z" fill="#22D3EE" opacity=".72"/>
+  <g transform="translate(88 92) scale(1.36)" fill="#22D3EE">
+    <path d="M44 35 27.5 44.526V25.474L44 35Z"/>
+    <path d="M74 35a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+    <path fill-rule="evenodd" d="M85 0H15v15H0v40h15v15h70V55h15V15H85V0Zm0 15H15v40h70V15Z" clip-rule="evenodd"/>
+  </g>
+  <text x="88" y="320" fill="#E6EDF7" font-family="IBM Plex Sans, Noto Sans SC, sans-serif" font-size="72" font-weight="700">云乐坊开发者文档</text>
+  <text x="92" y="395" fill="#9FB2C8" font-family="Noto Sans SC, sans-serif" font-size="32">云应用接入、账号体系与开放能力</text>
+  <text x="92" y="520" fill="#22D3EE" font-family="IBM Plex Mono, monospace" font-size="24" letter-spacing="2">DOCS.YUNLE.FUN</text>
+</svg>

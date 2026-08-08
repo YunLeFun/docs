@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="YunLeFun">
+  <rect width="128" height="128" fill="#0B1220"/>
+  <path d="M0 101 128 24v29L0 128Z" fill="#155E75" opacity=".48"/>
+  <g transform="translate(18 32) scale(.92)" fill="#E6EDF7">
+    <path d="M44 35 27.5 44.526V25.474L44 35Z"/>
+    <path d="M74 35a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+    <path fill-rule="evenodd" d="M85 0H15v15H0v40h15v15h70V55h15V15H85V0Zm0 15H15v40h70V15Z" clip-rule="evenodd"/>
+  </g>
+  <rect x="10" y="10" width="108" height="108" fill="none" stroke="#22D3EE" stroke-opacity=".42" stroke-width="2"/>
+</svg>

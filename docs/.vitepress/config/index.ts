@@ -125,9 +125,16 @@ export default defineConfig({
 
   head: [
     ['link', { rel: 'icon', href: '/favicon.svg', type: 'image/svg+xml' }],
+    ['link', { rel: 'icon', href: '/favicon-32.png', type: 'image/png', sizes: '32x32' }],
+    ['link', { rel: 'apple-touch-icon', href: '/apple-touch-icon.png', sizes: '180x180' }],
+    ['link', { rel: 'manifest', href: '/site.webmanifest' }],
+    ['link', { rel: 'mask-icon', href: '/brand/brand-mark.svg', color: '#0B1220' }],
+    ['meta', { name: 'theme-color', content: '#0B1220' }],
     ['meta', { name: 'author', content: 'YunLeFun' }],
     ['meta', { property: 'og:title', content: '云乐坊开发者文档' }],
     ['meta', { property: 'og:description', content: '应用接入、上架、账号、支付、云币、会员与 SSO。' }],
+    ['meta', { property: 'og:image', content: 'https://docs.yunle.fun/og-default.png' }],
+    ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
     ['meta', { name: 'viewport', content: 'width=device-width, initial-scale=1.0, viewport-fit=cover' }],
   ],
 })

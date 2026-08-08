@@ -9,6 +9,9 @@
     "docs:preview": "vitepress preview"
   },
   "devDependencies": {
+    "@fontsource-variable/ibm-plex-sans": "catalog:",
+    "@fontsource-variable/noto-sans-sc": "catalog:",
+    "@fontsource/ibm-plex-mono": "catalog:",
     "@iconify-json/svg-spinners": "catalog:",
     "@shikijs/vitepress-twoslash": "catalog:",
     "@unocss/reset": "catalog:",
