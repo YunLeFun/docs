@@ -314,11 +314,12 @@ body::before {
   width: min(300px, 68vw);
   border-radius: 28px;
   filter: drop-shadow(0 30px 42px rgb(11 18 32 / 28%));
+  transform: translate(-50%, -50%);
   transition: transform 240ms ease;
 }
 
 .VPHomeHero .image:hover .image-src {
-  transform: rotate(3deg) translateY(-5px);
+  transform: translate(-50%, -50%) rotate(1deg) scale(1.02);
 }
 
 .VPButton {

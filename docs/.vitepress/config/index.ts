@@ -80,12 +80,7 @@ export default defineConfig({
       },
       {
         text: '站点',
-        items: [
-          { text: '官网', link: 'https://www.yunle.fun' },
-          { text: '应用', link: 'https://apps.yunle.fun' },
-          { text: '内部 Wiki', link: 'https://wiki.yunle.fun' },
-          { text: 'GitHub', link: 'https://github.com/YunLeFun' },
-        ],
+        link: '/sites/',
       },
       {
         text: `v${version}`,
@@ -109,6 +104,12 @@ export default defineConfig({
         {
           text: '开发工具',
           items: TOOLS,
+        },
+        {
+          text: '站点',
+          items: [
+            { text: '公开站点', link: '/sites/' },
+          ],
         },
       ],
     },
