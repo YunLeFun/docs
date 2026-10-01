@@ -2,6 +2,7 @@ import type { DefaultTheme } from 'vitepress'
 import { getVitepressConfig } from '@yunyoujun/docs'
 import { defineConfig } from 'vitepress'
 import { groupIconMdPlugin } from 'vitepress-plugin-group-icons'
+import { withYunlefun, yunlefunMarkdown, zhThemeConfig } from 'vitepress-theme-yunlefun/config'
 import { version } from '../../../package.json'
 
 const GUIDES: DefaultTheme.NavItemWithLink[] = [
@@ -35,7 +36,7 @@ const vpConfig = getVitepressConfig({
   repo: 'https://github.com/YunLeFun/docs',
 })
 
-export default defineConfig({
+export default defineConfig(withYunlefun({
   ...vpConfig,
 
   title: '云乐坊开发者文档',
@@ -45,20 +46,20 @@ export default defineConfig({
     languages: ['js', 'jsx', 'ts', 'tsx'],
     config: (md) => {
       md.use(groupIconMdPlugin)
+      md.use(yunlefunMarkdown)
     },
   },
   cleanUrls: true,
 
   themeConfig: {
     ...vpConfig.themeConfig,
+    ...zhThemeConfig,
+    siteTitle: '云乐坊文档',
 
+    editLink: { ...vpConfig.themeConfig?.editLink, text: '在 GitHub 编辑此页' },
     logo: {
       src: '/favicon.svg',
-      alt: 'YunLeFun',
-    },
-
-    search: {
-      provider: 'local',
+      alt: '云乐坊',
     },
 
     nav: [
@@ -138,4 +139,4 @@ export default defineConfig({
     ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
     ['meta', { name: 'viewport', content: 'width=device-width, initial-scale=1.0, viewport-fit=cover' }],
   ],
-})
+}))

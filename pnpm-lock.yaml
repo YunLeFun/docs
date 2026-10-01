@@ -9,15 +9,6 @@ catalogs:
     '@antfu/eslint-config':
       specifier: ^8.3.0
       version: 8.3.0
-    '@fontsource-variable/ibm-plex-sans':
-      specifier: ^5.3.0
-      version: 5.3.0
-    '@fontsource-variable/noto-sans-sc':
-      specifier: ^5.3.0
-      version: 5.3.0
-    '@fontsource/ibm-plex-mono':
-      specifier: ^5.3.0
-      version: 5.3.0
     '@iconify-json/svg-spinners':
       specifier: ^1.2.4
       version: 1.2.4
@@ -78,6 +69,9 @@ catalogs:
     vitepress-plugin-group-icons:
       specifier: ^1.7.5
       version: 1.7.5
+    vitepress-theme-yunlefun:
+      specifier: https://github.com/YunLeFun/design/releases/download/theme-v0.1.1/vitepress-theme-yunlefun-0.1.1.tgz
+      version: 0.1.1
     vue:
       specifier: ^3.5.35
       version: 3.5.35
@@ -113,15 +107,6 @@ importers:
 
   docs:
     devDependencies:
-      '@fontsource-variable/ibm-plex-sans':
-        specifier: 'catalog:'
-        version: 5.3.0
-      '@fontsource-variable/noto-sans-sc':
-        specifier: 'catalog:'
-        version: 5.3.0
-      '@fontsource/ibm-plex-mono':
-        specifier: 'catalog:'
-        version: 5.3.0
       '@iconify-json/svg-spinners':
         specifier: 'catalog:'
         version: 1.2.4
@@ -161,6 +146,9 @@ importers:
       vitepress-plugin-group-icons:
         specifier: 'catalog:'
         version: 1.7.5(vite@8.0.14(@types/node@25.9.1)(esbuild@0.28.0)(jiti@2.6.1)(tsx@4.22.3)(yaml@2.8.4))
+      vitepress-theme-yunlefun:
+        specifier: 'catalog:'
+        version: https://github.com/YunLeFun/design/releases/download/theme-v0.1.1/vitepress-theme-yunlefun-0.1.1.tgz(vitepress@2.0.0-alpha.17(@types/node@25.9.1)(change-case@5.4.4)(jiti@2.6.1)(lightningcss@1.32.0)(postcss@8.5.15)(tsx@4.22.3)(typescript@5.9.3)(yaml@2.8.4))(vue@3.5.35(typescript@5.9.3))
       vue:
         specifier: 'catalog:'
         version: 3.5.35(typescript@5.9.3)
@@ -806,15 +794,6 @@ packages:
 
   '@floating-ui/utils@0.2.8':
     resolution: {integrity: sha512-kym7SodPp8/wloecOpcmSnWJsK7M0E5Wg8UcFA+uO4B9s5d0ywXOEro/8HM9x0rW+TljRzul/14UYz3TleT3ig==}
-
-  '@fontsource-variable/ibm-plex-sans@5.3.0':
-    resolution: {integrity: sha512-agG8tXFEo0hD9+J7npa4vbbWult52eMLVaQ6WQRlhs/iCAojrMAoejru85W9HTVXHfyUj96KM7gp/KGAS87XaQ==}
-
-  '@fontsource-variable/noto-sans-sc@5.3.0':
-    resolution: {integrity: sha512-lNar1dF7Ik/lHNPo/7JWG0TolXY29LtsqYgMvEysooZ5bsO9uH4shJmRrwyJ3PjyTPljhpMJEK0jDuLSU4vJ1w==}
-
-  '@fontsource/ibm-plex-mono@5.3.0':
-    resolution: {integrity: sha512-eTgnZjZEGk1QtD3ZstF+Vclo2HLAni8YMy34/DxllwZvyz1lR/1RF/xTiAquOBO7MvqBx8D2Ig2WCPMVfdZu7Q==}
 
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
@@ -1748,6 +1727,14 @@ packages:
     resolution: {integrity: sha512-bZpge9eSXwa4ToSiqJ7j6KRwhAsneMFoSz3LMWKQDkqimm3D/tbFlrklrs/IOqC8tEcYmXQZJ6N0UrjhBirVCg==}
     peerDependencies:
       vue: ^3.5.0
+
+  '@yunlefun/ui@0.0.6':
+    resolution: {integrity: sha512-XWvfNpKbTlF+0FA+dJg9koGbdx8/0QuXXQetB9GmCBT9kKZsreBMf89m5WpzML4DHxStBRxyb3GOBegl6TNidQ==}
+    peerDependencies:
+      sass: ^1.101.0
+    peerDependenciesMeta:
+      sass:
+        optional: true
 
   '@yunyoujun/docs@0.1.14':
     resolution: {integrity: sha512-SbSRB0QKLVzXDU6kkumAtEcLskPXD4GhWefYhbSokFiyD1sjB2Rogy6bymDvWmzD28T8UwmaekerXVBUBC1lpA==}
@@ -3487,6 +3474,13 @@ packages:
       vite:
         optional: true
 
+  vitepress-theme-yunlefun@https://github.com/YunLeFun/design/releases/download/theme-v0.1.1/vitepress-theme-yunlefun-0.1.1.tgz:
+    resolution: {tarball: https://github.com/YunLeFun/design/releases/download/theme-v0.1.1/vitepress-theme-yunlefun-0.1.1.tgz}
+    version: 0.1.1
+    peerDependencies:
+      vitepress: ^1.6.4 || ^2.0.0-alpha.16
+      vue: ^3.5.0
+
   vitepress@2.0.0-alpha.17:
     resolution: {integrity: sha512-Z3VPUpwk/bHYqt1uMVOOK1/4xFiWQov1GNc2FvMdz6kvje4JRXEOngVI9C+bi5jeedMSHiA4dwKkff1NCvbZ9Q==}
     hasBin: true
@@ -4176,12 +4170,6 @@ snapshots:
       '@floating-ui/core': 1.6.8
 
   '@floating-ui/utils@0.2.8': {}
-
-  '@fontsource-variable/ibm-plex-sans@5.3.0': {}
-
-  '@fontsource-variable/noto-sans-sc@5.3.0': {}
-
-  '@fontsource/ibm-plex-mono@5.3.0': {}
 
   '@humanfs/core@0.19.1': {}
 
@@ -5182,6 +5170,8 @@ snapshots:
   '@vueuse/shared@14.3.0(vue@3.5.35(typescript@5.9.3))':
     dependencies:
       vue: 3.5.35(typescript@5.9.3)
+
+  '@yunlefun/ui@0.0.6': {}
 
   '@yunyoujun/docs@0.1.14(vite@8.0.14(@types/node@25.9.1)(esbuild@0.28.0)(jiti@2.6.1)(tsx@4.22.3)(yaml@2.8.4))':
     dependencies:
@@ -7160,6 +7150,14 @@ snapshots:
       '@iconify/utils': 3.1.0
     optionalDependencies:
       vite: 8.0.14(@types/node@25.9.1)(esbuild@0.28.0)(jiti@2.6.1)(tsx@4.22.3)(yaml@2.8.4)
+
+  vitepress-theme-yunlefun@https://github.com/YunLeFun/design/releases/download/theme-v0.1.1/vitepress-theme-yunlefun-0.1.1.tgz(vitepress@2.0.0-alpha.17(@types/node@25.9.1)(change-case@5.4.4)(jiti@2.6.1)(lightningcss@1.32.0)(postcss@8.5.15)(tsx@4.22.3)(typescript@5.9.3)(yaml@2.8.4))(vue@3.5.35(typescript@5.9.3)):
+    dependencies:
+      '@yunlefun/ui': 0.0.6
+      vitepress: 2.0.0-alpha.17(@types/node@25.9.1)(change-case@5.4.4)(jiti@2.6.1)(lightningcss@1.32.0)(postcss@8.5.15)(tsx@4.22.3)(typescript@5.9.3)(yaml@2.8.4)
+      vue: 3.5.35(typescript@5.9.3)
+    transitivePeerDependencies:
+      - sass
 
   vitepress@2.0.0-alpha.17(@types/node@25.9.1)(change-case@5.4.4)(jiti@2.6.1)(lightningcss@1.32.0)(postcss@8.5.15)(tsx@4.22.3)(typescript@5.9.3)(yaml@2.8.4):
     dependencies:
