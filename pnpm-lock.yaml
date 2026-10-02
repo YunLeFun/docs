@@ -70,8 +70,8 @@ catalogs:
       specifier: ^1.7.5
       version: 1.7.5
     vitepress-theme-yunlefun:
-      specifier: https://github.com/YunLeFun/design/releases/download/theme-v0.2.1/vitepress-theme-yunlefun-0.2.1.tgz
-      version: 0.2.1
+      specifier: https://github.com/YunLeFun/design/releases/download/theme-v0.3.0/vitepress-theme-yunlefun-0.3.0.tgz
+      version: 0.3.0
     vue:
       specifier: ^3.5.35
       version: 3.5.35
@@ -148,7 +148,7 @@ importers:
         version: 1.7.5(vite@8.0.14(@types/node@25.9.1)(esbuild@0.28.0)(jiti@2.6.1)(tsx@4.22.3)(yaml@2.8.4))
       vitepress-theme-yunlefun:
         specifier: 'catalog:'
-        version: https://github.com/YunLeFun/design/releases/download/theme-v0.2.1/vitepress-theme-yunlefun-0.2.1.tgz(vitepress@2.0.0-alpha.17(@types/node@25.9.1)(change-case@5.4.4)(jiti@2.6.1)(lightningcss@1.32.0)(postcss@8.5.28)(tsx@4.22.3)(typescript@5.9.3)(yaml@2.8.4))(vue@3.5.35(typescript@5.9.3))
+        version: https://github.com/YunLeFun/design/releases/download/theme-v0.3.0/vitepress-theme-yunlefun-0.3.0.tgz(vitepress@2.0.0-alpha.17(@types/node@25.9.1)(change-case@5.4.4)(jiti@2.6.1)(lightningcss@1.32.0)(postcss@8.5.28)(tsx@4.22.3)(typescript@5.9.3)(yaml@2.8.4))(vue@3.5.35(typescript@5.9.3))
       vue:
         specifier: 'catalog:'
         version: 3.5.35(typescript@5.9.3)
@@ -3486,9 +3486,9 @@ packages:
       vite:
         optional: true
 
-  vitepress-theme-yunlefun@https://github.com/YunLeFun/design/releases/download/theme-v0.2.1/vitepress-theme-yunlefun-0.2.1.tgz:
-    resolution: {integrity: sha512-ImGQo3COmVRJnuh7gHovINtAj++L1B/wmhUQGnAzs9mzwHy2fUPhZK38c9RvagYzwfdihQ0fq4UBlZhUUHes1Q==, tarball: https://github.com/YunLeFun/design/releases/download/theme-v0.2.1/vitepress-theme-yunlefun-0.2.1.tgz}
-    version: 0.2.1
+  vitepress-theme-yunlefun@https://github.com/YunLeFun/design/releases/download/theme-v0.3.0/vitepress-theme-yunlefun-0.3.0.tgz:
+    resolution: {integrity: sha512-m/gbF0Exrux5VSYPc2wxV6ZXa/BSPre2m5GO3fWNyNj0ZzAvXPypN1DzxFGxpxz6HEv1Hq6KjCbCM2AjCUu9Lw==, tarball: https://github.com/YunLeFun/design/releases/download/theme-v0.3.0/vitepress-theme-yunlefun-0.3.0.tgz}
+    version: 0.3.0
     peerDependencies:
       vitepress: ^1.6.4 || ^2.0.0-alpha.16
       vue: ^3.5.0
@@ -7175,7 +7175,7 @@ snapshots:
     optionalDependencies:
       vite: 8.0.14(@types/node@25.9.1)(esbuild@0.28.0)(jiti@2.6.1)(tsx@4.22.3)(yaml@2.8.4)
 
-  vitepress-theme-yunlefun@https://github.com/YunLeFun/design/releases/download/theme-v0.2.1/vitepress-theme-yunlefun-0.2.1.tgz(vitepress@2.0.0-alpha.17(@types/node@25.9.1)(change-case@5.4.4)(jiti@2.6.1)(lightningcss@1.32.0)(postcss@8.5.28)(tsx@4.22.3)(typescript@5.9.3)(yaml@2.8.4))(vue@3.5.35(typescript@5.9.3)):
+  vitepress-theme-yunlefun@https://github.com/YunLeFun/design/releases/download/theme-v0.3.0/vitepress-theme-yunlefun-0.3.0.tgz(vitepress@2.0.0-alpha.17(@types/node@25.9.1)(change-case@5.4.4)(jiti@2.6.1)(lightningcss@1.32.0)(postcss@8.5.28)(tsx@4.22.3)(typescript@5.9.3)(yaml@2.8.4))(vue@3.5.35(typescript@5.9.3)):
     dependencies:
       '@yunlefun/icons': 0.3.1
       '@yunlefun/ui': 0.0.6
