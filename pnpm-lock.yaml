@@ -70,8 +70,8 @@ catalogs:
       specifier: ^1.7.5
       version: 1.7.5
     vitepress-theme-yunlefun:
-      specifier: https://github.com/YunLeFun/design/releases/download/theme-v0.1.1/vitepress-theme-yunlefun-0.1.1.tgz
-      version: 0.1.1
+      specifier: https://github.com/YunLeFun/design/releases/download/theme-v0.2.0/vitepress-theme-yunlefun-0.2.0.tgz
+      version: 0.2.0
     vue:
       specifier: ^3.5.35
       version: 3.5.35
@@ -142,13 +142,13 @@ importers:
         version: 6.1.1(typescript@5.9.3)(vite@8.0.14(@types/node@25.9.1)(esbuild@0.28.0)(jiti@2.6.1)(tsx@4.22.3)(yaml@2.8.4))
       vitepress:
         specifier: 'catalog:'
-        version: 2.0.0-alpha.17(@types/node@25.9.1)(change-case@5.4.4)(jiti@2.6.1)(lightningcss@1.32.0)(postcss@8.5.15)(tsx@4.22.3)(typescript@5.9.3)(yaml@2.8.4)
+        version: 2.0.0-alpha.17(@types/node@25.9.1)(change-case@5.4.4)(jiti@2.6.1)(lightningcss@1.32.0)(postcss@8.5.28)(tsx@4.22.3)(typescript@5.9.3)(yaml@2.8.4)
       vitepress-plugin-group-icons:
         specifier: 'catalog:'
         version: 1.7.5(vite@8.0.14(@types/node@25.9.1)(esbuild@0.28.0)(jiti@2.6.1)(tsx@4.22.3)(yaml@2.8.4))
       vitepress-theme-yunlefun:
         specifier: 'catalog:'
-        version: https://github.com/YunLeFun/design/releases/download/theme-v0.1.1/vitepress-theme-yunlefun-0.1.1.tgz(vitepress@2.0.0-alpha.17(@types/node@25.9.1)(change-case@5.4.4)(jiti@2.6.1)(lightningcss@1.32.0)(postcss@8.5.15)(tsx@4.22.3)(typescript@5.9.3)(yaml@2.8.4))(vue@3.5.35(typescript@5.9.3))
+        version: https://github.com/YunLeFun/design/releases/download/theme-v0.2.0/vitepress-theme-yunlefun-0.2.0.tgz(vitepress@2.0.0-alpha.17(@types/node@25.9.1)(change-case@5.4.4)(jiti@2.6.1)(lightningcss@1.32.0)(postcss@8.5.28)(tsx@4.22.3)(typescript@5.9.3)(yaml@2.8.4))(vue@3.5.35(typescript@5.9.3))
       vue:
         specifier: 'catalog:'
         version: 3.5.35(typescript@5.9.3)
@@ -1728,6 +1728,9 @@ packages:
     peerDependencies:
       vue: ^3.5.0
 
+  '@yunlefun/icons@0.3.1':
+    resolution: {integrity: sha512-X+Ut79gegUVAK8T48AYxkK6lkOgHuFPbxUTr+CXDZRTqEFEofZuf4fFlDKR0PX67GoYyV2d5HOZbtLONQjzRAw==}
+
   '@yunlefun/ui@0.0.6':
     resolution: {integrity: sha512-XWvfNpKbTlF+0FA+dJg9koGbdx8/0QuXXQetB9GmCBT9kKZsreBMf89m5WpzML4DHxStBRxyb3GOBegl6TNidQ==}
     peerDependencies:
@@ -2815,6 +2818,11 @@ packages:
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
+  nanoid@3.3.19:
+    resolution: {integrity: sha512-Y2tUNy4ouw6tq5oDSKeQYGOyhkUBhNOcGV/02KC+6kd9eDGqdZd++mjMiIDilrBYvjEnCYvVtsuHCuP+okSfug==}
+    engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
+    hasBin: true
+
   natural-compare@1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
 
@@ -2959,6 +2967,10 @@ packages:
 
   postcss@8.5.15:
     resolution: {integrity: sha512-FfR8sjd4em2T6fb3I2MwAJU7HWVMr9zba+enmQeeWFfCbm+UOC/0X4DS8XtpUTMwWMGbjKYP7xjfNekzyGmB3A==}
+    engines: {node: ^10 || ^12 || >=14}
+
+  postcss@8.5.28:
+    resolution: {integrity: sha512-RRuzqDtt5Y9h3quz5hWhK+TPnsmVs6WwSU6LkJMeY4HstUEDuYTG8UJSdawMRzmzAtV+KEoG8N3Qg2qLy5vM/A==}
     engines: {node: ^10 || ^12 || >=14}
 
   postcss@8.5.8:
@@ -3474,9 +3486,9 @@ packages:
       vite:
         optional: true
 
-  vitepress-theme-yunlefun@https://github.com/YunLeFun/design/releases/download/theme-v0.1.1/vitepress-theme-yunlefun-0.1.1.tgz:
-    resolution: {tarball: https://github.com/YunLeFun/design/releases/download/theme-v0.1.1/vitepress-theme-yunlefun-0.1.1.tgz}
-    version: 0.1.1
+  vitepress-theme-yunlefun@https://github.com/YunLeFun/design/releases/download/theme-v0.2.0/vitepress-theme-yunlefun-0.2.0.tgz:
+    resolution: {integrity: sha512-X08pghYFQqqiJn7diMbzqnDKLXHgcorfRFhoJ31Icis404oTuYmnYAAx22tKtEw3Rqdxqe70kWDlzVkbESAFyg==, tarball: https://github.com/YunLeFun/design/releases/download/theme-v0.2.0/vitepress-theme-yunlefun-0.2.0.tgz}
+    version: 0.2.0
     peerDependencies:
       vitepress: ^1.6.4 || ^2.0.0-alpha.16
       vue: ^3.5.0
@@ -5171,6 +5183,10 @@ snapshots:
     dependencies:
       vue: 3.5.35(typescript@5.9.3)
 
+  '@yunlefun/icons@0.3.1':
+    dependencies:
+      '@iconify/types': 2.0.0
+
   '@yunlefun/ui@0.0.6': {}
 
   '@yunyoujun/docs@0.1.14(vite@8.0.14(@types/node@25.9.1)(esbuild@0.28.0)(jiti@2.6.1)(tsx@4.22.3)(yaml@2.8.4))':
@@ -6454,6 +6470,8 @@ snapshots:
 
   nanoid@3.3.12: {}
 
+  nanoid@3.3.19: {}
+
   natural-compare@1.4.0: {}
 
   natural-orderby@5.0.0: {}
@@ -6613,6 +6631,12 @@ snapshots:
   postcss@8.5.15:
     dependencies:
       nanoid: 3.3.12
+      picocolors: 1.1.1
+      source-map-js: 1.2.1
+
+  postcss@8.5.28:
+    dependencies:
+      nanoid: 3.3.19
       picocolors: 1.1.1
       source-map-js: 1.2.1
 
@@ -7151,15 +7175,17 @@ snapshots:
     optionalDependencies:
       vite: 8.0.14(@types/node@25.9.1)(esbuild@0.28.0)(jiti@2.6.1)(tsx@4.22.3)(yaml@2.8.4)
 
-  vitepress-theme-yunlefun@https://github.com/YunLeFun/design/releases/download/theme-v0.1.1/vitepress-theme-yunlefun-0.1.1.tgz(vitepress@2.0.0-alpha.17(@types/node@25.9.1)(change-case@5.4.4)(jiti@2.6.1)(lightningcss@1.32.0)(postcss@8.5.15)(tsx@4.22.3)(typescript@5.9.3)(yaml@2.8.4))(vue@3.5.35(typescript@5.9.3)):
+  vitepress-theme-yunlefun@https://github.com/YunLeFun/design/releases/download/theme-v0.2.0/vitepress-theme-yunlefun-0.2.0.tgz(vitepress@2.0.0-alpha.17(@types/node@25.9.1)(change-case@5.4.4)(jiti@2.6.1)(lightningcss@1.32.0)(postcss@8.5.28)(tsx@4.22.3)(typescript@5.9.3)(yaml@2.8.4))(vue@3.5.35(typescript@5.9.3)):
     dependencies:
+      '@yunlefun/icons': 0.3.1
       '@yunlefun/ui': 0.0.6
-      vitepress: 2.0.0-alpha.17(@types/node@25.9.1)(change-case@5.4.4)(jiti@2.6.1)(lightningcss@1.32.0)(postcss@8.5.15)(tsx@4.22.3)(typescript@5.9.3)(yaml@2.8.4)
+      postcss: 8.5.28
+      vitepress: 2.0.0-alpha.17(@types/node@25.9.1)(change-case@5.4.4)(jiti@2.6.1)(lightningcss@1.32.0)(postcss@8.5.28)(tsx@4.22.3)(typescript@5.9.3)(yaml@2.8.4)
       vue: 3.5.35(typescript@5.9.3)
     transitivePeerDependencies:
       - sass
 
-  vitepress@2.0.0-alpha.17(@types/node@25.9.1)(change-case@5.4.4)(jiti@2.6.1)(lightningcss@1.32.0)(postcss@8.5.15)(tsx@4.22.3)(typescript@5.9.3)(yaml@2.8.4):
+  vitepress@2.0.0-alpha.17(@types/node@25.9.1)(change-case@5.4.4)(jiti@2.6.1)(lightningcss@1.32.0)(postcss@8.5.28)(tsx@4.22.3)(typescript@5.9.3)(yaml@2.8.4):
     dependencies:
       '@docsearch/css': 4.6.0
       '@docsearch/js': 4.6.0
@@ -7181,7 +7207,7 @@ snapshots:
       vite: 7.3.1(@types/node@25.9.1)(jiti@2.6.1)(lightningcss@1.32.0)(tsx@4.22.3)(yaml@2.8.4)
       vue: 3.5.35(typescript@5.9.3)
     optionalDependencies:
-      postcss: 8.5.15
+      postcss: 8.5.28
     transitivePeerDependencies:
       - '@types/node'
       - async-validator

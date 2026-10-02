@@ -5,9 +5,6 @@ hero:
   name: 云乐坊开发者文档
   text: 云应用接入与开放能力
   tagline: 应用上架、统一账号、支付、云币、会员与 SSO 的公开文档入口
-  image:
-    src: /favicon.svg
-    alt: 云乐坊开发者文档
   actions:
     - theme: brand
       text: 快速开始

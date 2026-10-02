@@ -28,5 +28,5 @@ catalog:
   vite-tsconfig-paths: ^6.1.1
   vitepress: ^2.0.0-alpha.17
   vitepress-plugin-group-icons: ^1.7.5
-  vitepress-theme-yunlefun: https://github.com/YunLeFun/design/releases/download/theme-v0.1.1/vitepress-theme-yunlefun-0.1.1.tgz
+  vitepress-theme-yunlefun: https://github.com/YunLeFun/design/releases/download/theme-v0.2.0/vitepress-theme-yunlefun-0.2.0.tgz
   vue: ^3.5.35

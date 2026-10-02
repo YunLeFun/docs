@@ -33,3 +33,5 @@ pnpm docs:build
 ## 共享主题
 
 本站使用 [`vitepress-theme-yunlefun`](https://github.com/YunLeFun/design/tree/main/packages/vitepress-theme-yunlefun)，与 design、docs 和 wiki 共用设计变量、文档样式及原生亮暗切换。主题版本固定在 `pnpm-workspace.yaml` 中，升级时同步提交锁文件。站点导航、内容和站点目录组件仍在本仓库维护。
+
+品牌图形由 `@yunlefun/icons` 提供，导航和首页复用共享主题 Logo。执行 `pnpm brand:icons` 重建 favicon、Apple/PWA 图标；需要 `librsvg` 的 `rsvg-convert`。

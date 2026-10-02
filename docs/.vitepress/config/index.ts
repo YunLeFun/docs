@@ -57,10 +57,8 @@ export default defineConfig(withYunlefun({
     siteTitle: '云乐坊文档',
 
     editLink: { ...vpConfig.themeConfig?.editLink, text: '在 GitHub 编辑此页' },
-    logo: {
-      src: '/favicon.svg',
-      alt: '云乐坊',
-    },
+    logo: undefined,
+    brand: { icon: 'brand-mark', hero: true },
 
     nav: [
       {
@@ -130,7 +128,7 @@ export default defineConfig(withYunlefun({
     ['link', { rel: 'icon', href: '/favicon-32.png', type: 'image/png', sizes: '32x32' }],
     ['link', { rel: 'apple-touch-icon', href: '/apple-touch-icon.png', sizes: '180x180' }],
     ['link', { rel: 'manifest', href: '/site.webmanifest' }],
-    ['link', { rel: 'mask-icon', href: '/brand/brand-mark.svg', color: '#0B1220' }],
+    ['link', { rel: 'mask-icon', href: '/brand/brand-mark.svg', color: '#2563EB' }],
     ['meta', { name: 'theme-color', content: '#0B1220' }],
     ['meta', { name: 'author', content: 'YunLeFun' }],
     ['meta', { property: 'og:title', content: '云乐坊开发者文档' }],

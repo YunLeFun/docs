@@ -12,7 +12,8 @@
     "docs:build": "pnpm -C docs run docs:build",
     "docs:preview": "pnpm -C docs run docs:preview",
     "typecheck": "tsc --noEmit",
-    "prepare": "simple-git-hooks"
+    "prepare": "simple-git-hooks",
+    "brand:icons": "node docs/scripts/generate-brand-icons.mjs"
   },
   "devDependencies": {
     "@antfu/eslint-config": "catalog:",
