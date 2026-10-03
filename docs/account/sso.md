@@ -42,7 +42,7 @@ pnpm add @yunlefun/sso
 import cloudbase from '@cloudbase/js-sdk'
 import { signInWithSso } from '@yunlefun/sso'
 
-const app = cloudbase.init({ env: 'yunlefun-8g7ybcxc7345c490' }) // 云乐坊环境
+const app = cloudbase.init({ env: 'your-cloudbase-env-id' }) // 管理员提供的受信任环境 ID
 const auth = app.auth({ persistence: 'local' })
 
 const { data } = await auth.getSession()
@@ -52,6 +52,8 @@ if (!data?.session || data.session.user?.is_anonymous) {
   // res.ok === false → 主站也未登录，保持未登录即可
 }
 ```
+
+将 `your-cloudbase-env-id` 替换为管理员提供的环境 ID。环境 ID 不是登录凭证；是否允许接入仍由 Auth 权限和 SSO 白名单决定。
 
 ### 3.「用云乐坊账号登录」按钮
 
