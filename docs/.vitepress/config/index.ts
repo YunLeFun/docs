@@ -58,7 +58,7 @@ export default defineConfig(withYunlefun({
 
     editLink: { ...vpConfig.themeConfig?.editLink, text: '在 GitHub 编辑此页' },
     logo: undefined,
-    brand: { icon: 'brand-mark', hero: true },
+    brand: { icon: 'brand-mark', hero: false },
 
     nav: [
       {

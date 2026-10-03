@@ -6,6 +6,7 @@ import SitesDirectory from './components/SitesDirectory.vue'
 
 import 'uno.css'
 import 'vitepress-theme-yunlefun/style.css'
+import './home.css'
 import './sites.css'
 import 'virtual:group-icons.css'
 

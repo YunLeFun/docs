@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="YunLeFun Docs">
+  <defs>
+    <linearGradient id="brand" x1="12" x2="116" y1="14" y2="114" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2563eb" />
+      <stop offset="0.56" stop-color="#0ea5e9" />
+      <stop offset="1" stop-color="#0891b2" />
+    </linearGradient>
+    <linearGradient id="shine" x1="24" x2="104" y1="8" y2="120" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff" stop-opacity="0.5" />
+      <stop offset="0.55" stop-color="#fff" stop-opacity="0.06" />
+      <stop offset="1" stop-color="#fff" stop-opacity="0.16" />
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="34" fill="url(#brand)" />
+  <rect x="1" y="1" width="126" height="126" rx="33" fill="url(#shine)" />
+  <g transform="translate(21 34) scale(0.86)" fill="#fff">
+    <path d="M44 35L27.5 44.5263V25.4737L44 35Z" />
+    <path d="M74 35C74 39.9706 69.9706 44 65 44C60.0294 44 56 39.9706 56 35C56 30.0294 60.0294 26 65 26C69.9706 26 74 30.0294 74 35Z" />
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M85 0H15V15H0V55H15V70H85V55H100V15H85V0ZM85 15H15V55H85V15Z" />
+  </g>
+</svg>
