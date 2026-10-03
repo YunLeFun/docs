@@ -4,7 +4,7 @@
 
 ## 本地开发
 
-1. 安装 Node.js 24 和 `package.json` 指定的 pnpm 10.33.4。
+1. 安装 Node.js 24 和 `package.json` 指定的 pnpm 10.34.6。
 2. Fork 本仓库，从 `main` 新建改动分支。
 3. 执行 `pnpm install --frozen-lockfile` 和 `pnpm docs:dev`。
 4. 修改后运行 `pnpm check`，确认检查和构建通过。

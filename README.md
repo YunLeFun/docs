@@ -10,7 +10,7 @@
 
 ## 开发
 
-使用 Node.js 24（见 [`.node-version`](./.node-version)）和 pnpm 10.33.4（见 [`package.json`](./package.json)）。本仓库是文档站工作区，`private: true` 用于防止误发布 npm 包，不影响仓库开源。
+使用 Node.js 24（见 [`.node-version`](./.node-version)）和 pnpm 10.34.6（见 [`package.json`](./package.json)）。本仓库是文档站工作区，`private: true` 用于防止误发布 npm 包，不影响仓库开源。
 
 ```bash
 git clone https://github.com/YunLeFun/docs.git
@@ -30,7 +30,7 @@ pnpm docs:preview
 
 `pnpm check` 依次运行 ESLint、TypeScript 类型检查和 VitePress 构建，与 [CI](./.github/workflows/ci.yml) 保持一致。构建产物位于 `docs/.vitepress/dist`，预览前需完成构建。
 
-CI 在 `main` 推送、Pull Request 和手动触发时运行，使用 Ubuntu 24.04 与 Node.js 24。工作流仅需要读取仓库权限，不使用部署密钥，也不负责生产发布。
+CI 在 `main` 推送、Pull Request 和手动触发时运行，使用 Ubuntu 24.04 与 Node.js 24，并执行 `pnpm audit --audit-level=low` 检查已知依赖漏洞。工作流仅需要读取仓库权限，不使用部署密钥，也不负责生产发布。
 
 ## 参与贡献
 

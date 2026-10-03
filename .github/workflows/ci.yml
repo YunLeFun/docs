@@ -42,5 +42,7 @@ jobs:
         env:
           SKIP_INSTALL_SIMPLE_GIT_HOOKS: '1'
         run: pnpm install --frozen-lockfile
+      - name: Audit dependencies
+        run: pnpm audit --audit-level=low
       - name: Lint, typecheck and build
         run: pnpm check
