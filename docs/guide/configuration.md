@@ -4,18 +4,22 @@
 
 ## 本地开发
 
+使用 Node.js 24（见仓库根目录 `.node-version`）和 `package.json` 中指定的 pnpm 版本。首次开发先安装依赖：
+
 ```bash
-pnpm install
+pnpm install --frozen-lockfile
 pnpm docs:dev
 ```
 
 ## 质量检查
 
 ```bash
-pnpm lint
-pnpm typecheck
-pnpm docs:build
+pnpm check
 ```
+
+`pnpm check` 与 CI 一致，依次执行 ESLint、TypeScript 类型检查和 VitePress 构建。CI 使用 Ubuntu 24.04、Node.js 24 和锁文件中的依赖，不需要部署密钥。
+
+贡献流程见仓库根目录的 `CONTRIBUTING.md`。
 
 ## 内容约定
 
