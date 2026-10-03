@@ -72,8 +72,12 @@ export default defineConfig(withYunlefun({
         link: '/account/',
       },
       {
-        text: '站点',
-        link: '/sites/',
+        text: '应用生态',
+        link: 'https://www.yunle.fun/developer',
+      },
+      {
+        text: '返回官网',
+        link: 'https://www.yunle.fun',
       },
       {
         text: '更新记录',
