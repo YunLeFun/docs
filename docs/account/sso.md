@@ -1,139 +1,128 @@
 # SSO 与登录
 
-云乐坊提供统一登录体系：用户在 `www.yunle.fun` 登录一次，**经许可的站点**即可复用这份登录态，
-`uid` 全平台一致，无需各站各自登录。客户端封装为 npm 包
-[`@yunlefun/sso`](https://github.com/YunLeFun/ylf/tree/main/packages/sso)。
+`@yunlefun/sso` 用于已登记的第一方客户端：主站确认用户身份，应用采用一次性授权码建立临时身份，再由自己的服务端建立应用会话。本文对应已发布的 **0.6.2**，不提供第三方自动注册入口。
 
-## 谁可以接入
+本文 TypeScript 示例已通过 npm 发布版 0.6.2 的类型检查；跨站登录、原生授权和应用会话仍需在各自登记的环境中完成联调。
 
-::: warning 这是「受信任站点」的免登方案，不是开放第三方登录
-SSO 桥接会把**完整登录态（含长效 `refresh_token`）**交给接入站点，等同于把账号钥匙交给对方。所以：
+## 接入前确认
 
-- ✅ **适用**：云乐坊自有站点、你完全掌控或高度信任的站点。
-- ❌ **不适用**：面向任意第三方开发者的开放式「用云乐坊登录」。那需要 OAuth2 授权码 + 用户授权同意流程（对方只拿到受限、可吊销的 token，永远看不到 `refresh_token`），不在本方案范围。
-:::
+需要维护者登记公开的 `clientId`、应用 `appId`、精确 HTTPS Origin、完整 `redirectUri`、允许的 scope 和环境。`clientId` 是标识，不是密钥；只改前端参数不会获得授权。
 
-接入需同时满足：
-
-1. 与云乐坊**同一 CloudBase 环境**、**同一套 Auth**（用户 `uid` 一致）。
-2. 站点 origin 已被云乐坊管理员加入 SSO 白名单（见 [管理员开通](#管理员开通白名单)）。
-
-## 工作原理
-
-CloudBase 登录凭证存在 **localStorage**，按 origin 隔离——跨域名不会自动共享。SSO 桥接负责**跨 origin 安全搬运**这份登录态：
-
-```
-子应用  ──①打开 www.yunle.fun/auth/sso（带 nonce）──▶  主站桥接页
-       ◀──②postMessage 回传 session（仅发给白名单 origin）──
-       ──③auth.setSession() 注入自己的 SDK──▶  已登录，uid 与主站一致
-```
-
-## 快速接入（3 步）
-
-### 1. 装包
+回调地址必须属于当前应用 Origin，并与登记值精确匹配；生产与开发环境分别配置。下面的 `example-app-web`、`example-app` 和回调路径都是示例，需要替换为已登记值。
 
 ```bash
-pnpm add @yunlefun/sso
+pnpm add @yunlefun/sso@0.6.2
 ```
 
-### 2. 进站静默免登
+## 普通 Web 登录
+
+在用户点击登录时发起顶层跳转：
 
 ```ts
-import cloudbase from '@cloudbase/js-sdk'
-import { signInWithSso } from '@yunlefun/sso'
+import { startSsoRedirect } from '@yunlefun/sso'
 
-const app = cloudbase.init({ env: 'yunlefun-8g7ybcxc7345c490' }) // 云乐坊环境
-const auth = app.auth({ persistence: 'local' })
-
-const { data } = await auth.getSession()
-if (!data?.session || data.session.user?.is_anonymous) {
-  const res = await signInWithSso(auth, { mode: 'silent' })
-  // res.ok === true  → 已与云乐坊同账号登录
-  // res.ok === false → 主站也未登录，保持未登录即可
+export async function login() {
+  await startSsoRedirect({
+    clientId: 'example-app-web',
+    scope: ['identity:bootstrap'],
+    redirectUri: new URL('/auth/callback', window.location.origin).href,
+    prompt: 'select_account',
+  })
 }
 ```
 
-### 3.「用云乐坊账号登录」按钮
+`prompt` 可省略；`select_account` 请求换号交互，`consent` 请求账号授权确认。SDK 在当前 tab 的 `sessionStorage` 保存 nonce 与 PKCE verifier，回跳 URL fragment 只携带一次性 code、nonce 和 issuer。
+
+顶层重定向不依赖隐藏 iframe 的跨站 Cookie，也不需要 popup 保留 opener。回调必须在原发起 tab 处理，并保留 fragment 到 SDK 消费完成；不要把 fragment 改写成 query 或转交其他窗口。
+
+## 在回调页消费身份
+
+在浏览器启动阶段调用一次 `consumeSsoRedirect()`。`null` 表示没有可消费的交易；`ok: false` 表示授权失败，按 `reason` 提示用户。
+
+下面的 `auth` 由应用创建，是隔离、仅内存、`persistence: 'none'` 的 CloudBase Auth 实例。`/api/session/login` 是**应用自己实现的同源服务端路由**，不是平台现成接口。
 
 ```ts
-async function loginWithYunLeFun() {
-  const res = await signInWithSso(auth, { mode: 'interactive' })
-  if (res.ok) {
-    // 登录成功，刷新你的用户态 / 拉账户
+import type { SsoIdentityAdoptionAuth } from '@yunlefun/sso/browser'
+import { consumeSsoRedirect } from '@yunlefun/sso'
+import { adoptSsoIdentityProof } from '@yunlefun/sso/browser'
+
+export async function completeLogin(
+  auth: SsoIdentityAdoptionAuth & { signOut: () => Promise<unknown> },
+) {
+  const authorization = consumeSsoRedirect()
+  if (!authorization)
+    return false
+  if (!authorization.ok)
+    throw new Error(`SSO 授权失败：${authorization.reason}`)
+
+  try {
+    const proof = await adoptSsoIdentityProof(auth, authorization)
+    const response = await fetch('/api/session/login', {
+      method: 'POST',
+      credentials: 'include',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(proof),
+    })
+    if (!response.ok)
+      throw new Error(`应用登录失败：${response.status}`)
+    return true
+  }
+  finally {
+    await auth.signOut()
   }
 }
 ```
 
-两种模式：
+`adoptSsoIdentityProof` 使用 PKCE 兑换授权码，立即将短时 CloudBase custom ticket 交给官方登录方法，再返回绑定同一交易的临时 access token 与签名身份断言。这个 token 属于隔离的临时身份，不是主站 session。
 
-| 模式             | 载体        | 用户感知         | 适合           |
-| ---------------- | ----------- | ---------------- | -------------- |
-| `silent`（默认） | 隐藏 iframe | 无感             | 进站自动免登   |
-| `interactive`    | 弹窗        | 看到主站登录弹窗 | 点「登录」按钮 |
+应用完成服务端会话建立后清除临时身份。不要将 proof、ticket 或 token 存到长期浏览器存储、日志或 URL 中。
 
-推荐：进站先 `silent` 静默探测，失败再把登录按钮接 `interactive`。
+## 应用服务端校验
 
-## 在云乐坊原生 App 内（自动免登）
-
-当你的页面是在**云乐坊原生 App（apps.yunle.fun）的应用内容器**里被打开时，`signInWithSso()` 会**自动改走原生通道**——你的代码一行都不用改：
-
-- 普通浏览器 → www.yunle.fun 的 postMessage 桥。
-- 原生容器内 → 容器注入的 `window.ylf` 桥取**页面自己的**会话（宿主登录态不直接下发给页面，由原生用一次性授权码/服务端兑换换出独立会话）。
-
-两条路终点都是 `auth.setSession()`，所以同一行 `signInWithSso(auth)` 在网页和 App 容器里都免登。无需为原生单独写代码；只有你的站点被原生容器**授信**（`trustedHosts`）时这条路才会通。
+BFF（应用自己的后端）验证两份身份证明，再检查应用角色、准入条件和重放保护，创建自己的安全会话。
 
 ```ts
-import { isInYunleApp } from '@yunlefun/sso'
+import type { SsoIdentityProofInput } from '@yunlefun/sso/server'
+import { verifySsoIdentityProof } from '@yunlefun/sso/server'
 
-if (isInYunleApp()) {
-  // 当前在云乐坊原生容器内（可选：仅用于判断 UI 形态）
+export async function verifyLogin(proof: SsoIdentityProofInput) {
+  return verifySsoIdentityProof(proof, {
+    cloudbaseEnvId: 'your-cloudbase-env-id',
+    appId: 'example-app',
+    clientId: 'example-app-web',
+    issuer: 'https://www.yunle.fun',
+    jwksUrl: 'https://api.yunle.fun/sso-ticket',
+  })
 }
 ```
 
-## API 速览
+环境、`appId`、`clientId` 和 issuer 使用服务端固定配置，不能从浏览器请求中取信。校验会绑定用户、客户端、应用、scope 与 nonce；登录成功仍不代表用户有权使用该应用的全部功能。
 
-| 入口                     | 导出                                                       | 用途                                       |
-| ------------------------ | ---------------------------------------------------------- | ------------------------------------------ |
-| `@yunlefun/sso`          | `signInWithSso(auth, options?)`                            | 一站式：发起 SSO + 注入登录态（多数站点只用这个） |
-| `@yunlefun/sso`          | `requestSso(options?)` / `adoptSession(auth, session)`     | 分步：只取回 / 只注入                      |
-| `@yunlefun/sso`          | `isInYunleApp()`                                            | 是否在云乐坊原生 App 容器内                |
-| `@yunlefun/sso/protocol` | `SSO_RESULT_TYPE` / `parseSsoResultMessage` …              | 协议常量与消息校验（主站桥接页用）        |
+SSO SDK 不创建长期 cookie，也不负责设备管理、角色权限或应用会话撤销。应用登出需结束自己的会话；不能把它当成已经开放的全站单点登出接口。
 
-`options`：`{ mode?: 'silent' | 'interactive', ssoOrigin?: string, timeoutMs?: number, native?: { scope?, exchangeUrl? } }`。
+## 原生容器授权
 
-## 管理员开通白名单
+已授信来源可用 `@yunlefun/sso/browser` 的 `requestHostSsoAuthorization()` 请求同样绑定 nonce 与 PKCE 的一次性授权码。它在普通浏览器或能力不可用时返回 `null`，此时可在用户操作下回退到 `startSsoRedirect()`。
 
-接入站点**无法自助开通**——需云乐坊管理员把站点 origin 加入主站环境变量：
+```ts
+import { requestHostSsoAuthorization } from '@yunlefun/sso/browser'
 
-```bash
-# www.yunle.fun 的 .env
-NUXT_PUBLIC_SSO_ALLOWED_TARGET_ORIGINS=https://*.yunle.fun,https://your-site.com
+export async function requestNativeLogin() {
+  return requestHostSsoAuthorization({
+    clientId: 'example-app-web',
+    scope: ['identity:bootstrap'],
+    redirectUri: new URL('/auth/callback', window.location.origin).href,
+    prompt: 'consent',
+  })
+}
 ```
 
-支持精确 origin 与 HTTPS 通配子域名（`*.example.com` 仅匹配 HTTPS 子域名，不含顶级域）。
+成功结果仍需通过 `adoptSsoIdentityProof()` 与应用 BFF 消费。用户取消授权时保留当前页面，不自动重复弹窗。宿主检测与能力授权见 [JSAPI](/app/jsapi)。
 
-::: danger 红线
-只把你**自己掌控或完全信任**的站点加进白名单。给不可信 origin 放行 = 把用户 `refresh_token` 拱手送人。
-:::
+## 从旧版迁移
 
-## 安全模型
+以下接口已经删除：`requestSso`、`signInWithSso`、`requestSsoNative`、`adoptSession`、`adoptSsoTicket` 和 `@yunlefun/sso/legacy`。
 
-跨站搬运的会话靠三道闸守住：
+删除隐藏 iframe、popup 和通过 `postMessage` 传递主站 access token、refresh token、session 的逻辑，改为顶层 redirect 或已授信的宿主授权。授权码默认短时有效且只能消费一次；超时或兑换失败后重新发起登录，不重放旧结果。
 
-1. **origin 白名单**（主站侧）——只发给许可的 origin。
-2. **nonce 一次一令**——客户端每次请求生成随机串，桥接原样回传，防重放 / 串扰。
-3. **来源窗口 + 精确 origin 校验**（客户端侧）——只认自己打开的那个 iframe/弹窗、且 `event.origin` 恰为主站源的消息。
-
-匿名态（`is_anonymous`）一律按未登录处理，不会被当作已登录广播。
-
-### 关于退出登录
-
-session 注入后子站持有**独立登录态**，不做单点登出（SLO）：主站退出后，子站已注入的会话用到自然过期；但子站再次 `silent` 同步会拿到未登录，因此「进站静默同步」天然反映最新登录态。
-
-## 登录之后
-
-拿到登录态后，调账户中心查云币 / 判会员 / 扣费——见 [云币与会员](/account/payment)。所有接口都从 CloudBase Auth 取 `uid`，前端无法伪造他人身份。
-
-## 原生 App
-
-移动端授权回调由 `apps.yunle.fun` 与 `www.yunle.fun` 协同处理（deeplink 回传 `code`+`state`），不走本 Web SSO 桥。
+失败排查见[常见问题](/guide/faq)。

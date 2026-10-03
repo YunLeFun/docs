@@ -4,8 +4,12 @@
   "version": "0.0.0",
   "private": true,
   "packageManager": "pnpm@10.33.4",
+  "engines": {
+    "node": ">=24.0.0"
+  },
   "scripts": {
     "build": "pnpm docs:build",
+    "check": "pnpm lint && pnpm typecheck && pnpm docs:build",
     "dev": "pnpm docs:dev",
     "lint": "eslint --cache .",
     "docs:dev": "pnpm -C docs run docs:dev",

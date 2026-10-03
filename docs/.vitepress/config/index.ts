@@ -3,11 +3,11 @@ import { getVitepressConfig } from '@yunyoujun/docs'
 import { defineConfig } from 'vitepress'
 import { groupIconMdPlugin } from 'vitepress-plugin-group-icons'
 import { withYunlefun, yunlefunMarkdown, zhThemeConfig } from 'vitepress-theme-yunlefun/config'
-import { version } from '../../../package.json'
 
 const GUIDES: DefaultTheme.NavItemWithLink[] = [
   { text: '文档定位', link: '/guide/what-is' },
   { text: '快速开始', link: '/guide/getting-started' },
+  { text: '常见问题', link: '/guide/faq' },
   { text: '文档维护', link: '/guide/configuration' },
 ]
 
@@ -15,21 +15,15 @@ const APP_GUIDES: DefaultTheme.NavItemWithLink[] = [
   { text: '应用接入概览', link: '/app/' },
   { text: '应用提交流程', link: '/app/submission' },
   { text: '审核与上架规范', link: '/app/review' },
+  { text: '个人工坊', link: '/app/workshops' },
+  { text: '公开目录接口', link: '/app/catalog' },
+  { text: '原生 JSAPI', link: '/app/jsapi' },
 ]
 
 const ACCOUNT_GUIDES: DefaultTheme.NavItemWithLink[] = [
   { text: '账号与支付概览', link: '/account/' },
   { text: '云币与会员', link: '/account/payment' },
   { text: 'SSO 与登录', link: '/account/sso' },
-]
-
-const TOOLS: DefaultTheme.NavItemWithLink[] = [
-  { text: 'CloudBase + CodeBuddy', link: '/guide/cloudbase-codebuddy' },
-]
-
-const VERSIONS: (DefaultTheme.NavItemWithLink | DefaultTheme.NavItemChildren)[] = [
-  { text: `v${version} (current)`, link: '/' },
-  { text: 'Changelog', link: '/changelog' },
 ]
 
 const vpConfig = getVitepressConfig({
@@ -40,7 +34,7 @@ export default defineConfig(withYunlefun({
   ...vpConfig,
 
   title: '云乐坊开发者文档',
-  description: '云乐坊对外开发者文档，覆盖应用接入、上架、账号、支付、云币、会员与 SSO。',
+  description: '云乐坊应用接入文档：个人工坊、公开目录、第一方 SSO、账户约定与原生 JSAPI。',
   lang: 'zh-CN',
   markdown: {
     languages: ['js', 'jsx', 'ts', 'tsx'],
@@ -54,7 +48,7 @@ export default defineConfig(withYunlefun({
   themeConfig: {
     ...vpConfig.themeConfig,
     ...zhThemeConfig,
-    siteTitle: '云乐坊文档',
+    siteTitle: '云乐坊文档 · 预览',
 
     editLink: { ...vpConfig.themeConfig?.editLink, text: '在 GitHub 编辑此页' },
     logo: undefined,
@@ -78,12 +72,16 @@ export default defineConfig(withYunlefun({
         link: '/account/',
       },
       {
-        text: '站点',
-        link: '/sites/',
+        text: '应用生态',
+        link: 'https://www.yunle.fun/developer',
       },
       {
-        text: `v${version}`,
-        items: VERSIONS,
+        text: '返回官网',
+        link: 'https://www.yunle.fun',
+      },
+      {
+        text: '更新记录',
+        link: '/changelog',
       },
     ],
     sidebar: {
@@ -99,10 +97,6 @@ export default defineConfig(withYunlefun({
         {
           text: '账号与支付',
           items: ACCOUNT_GUIDES,
-        },
-        {
-          text: '开发工具',
-          items: TOOLS,
         },
         {
           text: '站点',
@@ -132,7 +126,7 @@ export default defineConfig(withYunlefun({
     ['meta', { name: 'theme-color', content: '#0B1220' }],
     ['meta', { name: 'author', content: 'YunLeFun' }],
     ['meta', { property: 'og:title', content: '云乐坊开发者文档' }],
-    ['meta', { property: 'og:description', content: '应用接入、上架、账号、支付、云币、会员与 SSO。' }],
+    ['meta', { property: 'og:description', content: '个人工坊、公开目录、第一方 SSO、账户约定与原生 JSAPI。' }],
     ['meta', { property: 'og:image', content: 'https://docs.yunle.fun/og-default.png' }],
     ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
     ['meta', { name: 'viewport', content: 'width=device-width, initial-scale=1.0, viewport-fit=cover' }],
