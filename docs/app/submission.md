@@ -24,7 +24,7 @@
 | --- | --- | --- |
 | 可见范围 `audience` | `public` / `workshop` / `owner` | 个人主页公开 / 仅坊主和有效坊客 / 仅本人管理视图 |
 | 访问方式 `accessMode` | `public` / `login_required` / `invite_only` | 网站无需登录 / 需要登录 / 邀请访问的展示说明 |
-| 发布阶段 `releaseStage` | `stable` / `beta` | 稳定版或测试版标记 |
+| 发布阶段 `releaseStage` | `stable` / `beta` | 稳定版或 Beta 预览阶段，不决定环境与计费行为 |
 
 可见范围控制目录元数据；访问方式描述目标网站，不能代替网站自身鉴权。选择 `workshop` 前需开启[个人工坊](/app/workshops)。
 

@@ -4,6 +4,8 @@
 
 在线文档：<https://docs.yunle.fun>。
 
+当前文档为**开发者预览（Developer Preview）**，接入说明随应用与 SDK 版本更新。开源范围为本文档站的源码与公开接入说明，不包含平台后台或生产服务凭证。
+
 文档说明现有实现与接入条件，第三方自助发布尚未开放；具体范围见[文档定位](https://docs.yunle.fun/guide/what-is)。
 
 ## 开发

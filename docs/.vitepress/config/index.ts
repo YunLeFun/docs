@@ -48,7 +48,7 @@ export default defineConfig(withYunlefun({
   themeConfig: {
     ...vpConfig.themeConfig,
     ...zhThemeConfig,
-    siteTitle: '云乐坊文档',
+    siteTitle: '云乐坊文档 · 预览',
 
     editLink: { ...vpConfig.themeConfig?.editLink, text: '在 GitHub 编辑此页' },
     logo: undefined,
