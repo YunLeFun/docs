@@ -1,0 +1,12 @@
+@media (max-width: 767px) {
+  /* Let the full navigation bar own the background, including the title. */
+  .VPNavBar .content-body {
+    background: transparent;
+    backdrop-filter: none;
+  }
+
+  /* The title already provides a gap between the brand mark and its label. */
+  .VPNavBarTitle .ylf-nav-logo {
+    margin-right: 0;
+  }
+}
