@@ -7,9 +7,14 @@ packages:
   - docs
 
 overrides:
-  # Keep optional build tooling on versions with published security fixes.
+  # Keep documentation and lint tooling on versions with published security fixes.
   esbuild@>=0.27.3 <0.28.1: ^0.28.1
+  # Upstream math and glob parsers still constrain these vulnerable release lines.
+  katex@>=0.11.0 <0.18.2: ^0.18.2
+  markdown-it@>=14.0.0 <14.3.3: ^14.3.3
+  minimatch@>=10.0.0 <11.0.1: ^11.0.1
   rollup@>=4.0.0 <4.59.0: ^4.59.0
+  vite@>=8.3.0 <8.3.3: ^8.3.5
   vitest@>=4.0.0 <4.1.11: ^4.1.11
 
 catalog:
@@ -29,7 +34,7 @@ catalog:
   typescript: ^5.9.3
   unocss: ^66.10.5
   unplugin-vue-components: ^32.1.0
-  vite: ^8.3.2
+  vite: ^8.3.5
   vite-plugin-vue-devtools: ^8.2.1
   vite-tsconfig-paths: ^6.1.1
   vitepress: 2.0.0-alpha.20
